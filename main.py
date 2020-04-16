@@ -14,9 +14,16 @@ def comment():
     return 'comment'
 
 
+def comment2():
+    return 'comment'
+
+
+def comment3():
+    return 'comment'
+
+
 def google_call():
     print('google_call!!!')
 
-'''
-HELLO FROM 11111111111111
-'''
+# __pycache__/main.pyc
+# main.pyc
