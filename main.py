@@ -1,6 +1,7 @@
-from flask import Flask, request, Response, redirect
+from flask import Flask, request, Response
 from utils import generate_password
 from parsers import parse_length
+from db import run_query, ordering
 
 app = Flask(__name__)
 
@@ -19,50 +20,54 @@ def hello_world():  # вью функция, эндпоинт
     return response
 
 
+@app.route('/customers/')
+def customers():
+    query = '''
+    SELECT * FROM customers
+    '''
+
+    country = request.args.get('country')
+    if country:
+        param = f" WHERE Country = '{country}'"
+        query += param
+
+    order = request.args.get('ordering')
+    if order:
+        param = f" ORDER BY {ordering(order)}"
+        query += param
+
+    query += ';'
+    return str(run_query(query))
+
+
+@app.route('/employees/')
+def employees():
+    query = '''
+        SELECT * FROM employees;
+    '''
+    return str(run_query(query))
+
+
+@app.route('/f/')
+def foo():
+    query = '''
+        SELECT UnitPrice, Quantity FROM invoice_items;
+    '''
+    results = run_query(query)
+    sum_ = 0
+    for price, quantity in results:
+        sum_ += price * quantity
+
+    return str(sum_)
+
+
+@app.route('/f2/')
+def foo2():
+    query = '''
+        SELECT SUM(UnitPrice * Quantity) FROM invoice_items;
+    '''
+    return str(run_query(query))
+
+
 if __name__ == '__main__':
-    app.run(port=5050)
-
-# BR (Client) -> request (http://127.0.0.1:5050/hello-world/) -> Flask (PATH) ->
-# /w/ (hello) | /hello-world/ (hello_world) -> response -> Client
-
-#  IPV4 0-255.0-255.0-255.0-255
-# 8.10.4.2
-# 127.12.34.0
-# 127.0.1.277 - WRONG
-
-# 127.0.0.1
-# 443
-# 104.17.33.82:443
-#  IPV6
-
-# IP - PORT -> socket
-
-# 127.0.0.1:5000
-# 0 - 65,500
-# 0 - 1000
-# 1000 - 5000
-# 5000
-
-# PROTOCOL / IP   / PORT / PATH / query_params
-# http://127.0.0.1:5050/hello-world/?hello=world&a=10
-
-# http:// - protocol
-# 127.0.0.1 - IPV4
-# 5050 - PORT
-# /hello-world/ - PATH
-
-'''
-1xx - info
-2xx - 200 OK
-3xx - redirects
-4xx - 404 Not Found (Client Error), 400 - Bad request
-5xx - 500 (Server Error)
-
-https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP
-'''
-
-
-
-
-
-
+    app.run(port=5050, debug=True)
