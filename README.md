@@ -1,15 +1,10 @@
 Результат: один Пул Реквест!
 
-(2) 1. Возвращать содержимое файла с пайтон пакетами (requirements.txt) PATH: /requirements/ открыть файл requirements.txt и вернуть его содержимое
+(2) 1. Вью функция должна выводить количество уникальных имен (FirstName) из таблицы customers. PATH: /names/
 
-(2) 2. Вывести 100 случайно сгенерированных юзеров (почта + имя) 'Dmytro aasdasda@mail.com' PATH: /generate-users/ ( https://pypi.org/project/Faker/ ) + параметр который регулирует количество юзеров
+(4) 2. Реалтзовать функцию по тестам. Дожна быть возмодность передавать квери параметр который добавляет филтрацию по заданным полям и их значениям. PATH: /customers/ 
+https://github.com/DmytroKaminskiy/hillel_students/blob/master/db.py#L33
 
-(4) 3. Средний рост, средний вес (см, кг) (hw.csv) PATH: /mean/
+(2) 3. Вью функция должна выводить количество записей из таблицы tracks. PATH: /tracks/
 
-(2) 4. Вывести количество космонавтов в настоящий момент (http://api.open-notify.org/astros.json) (https://pypi.org/project/requests/) PATH: /space/
-
-`import requests`
-
-`r = requests.get('https://api.github.com/repos/psf/requests')`
-
-`r.json()["description"]`
+(2) 4. Вью функция должна выводить все треки и соответствующую длину трека в секундах из таблицы tracks. PATH: /tracks-sec/
