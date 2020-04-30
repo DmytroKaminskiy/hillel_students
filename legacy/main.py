@@ -6,8 +6,8 @@ from db import run_query, ordering
 app = Flask(__name__)
 
 
-@app.route('/random/')
-def hello_world():  # вью функция, эндпоинт
+@app.route('/random/')  # urls.py
+def hello_world():  # вью функция, эндпоинт  # views.py
 
     # return redirect('https://pythonworld.ru/')
     length = parse_length(request.args.get('length', '10'))
