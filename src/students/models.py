@@ -19,9 +19,3 @@ class Student(models.Model):
     def inc_age(self) -> None:
         self.age += 1
         self.save()
-
-# st.full_name
-
-# __ in, lt, lte, gt, gte
-# startswith, endswith, istartswith, iendswith, exact, iexact
-# sqlite

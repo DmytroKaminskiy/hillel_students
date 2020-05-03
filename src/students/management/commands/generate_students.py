@@ -8,7 +8,7 @@ from students.models import Student
 
 
 class Command(BaseCommand):
-    help = 'Generate random students'  # noqa
+    help = 'Generate random students'  # noqa  help is python builtins but django command requires it.
 
     def handle(self, *args, **options):
         fake = Faker()
