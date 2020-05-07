@@ -8,6 +8,9 @@ from students import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('', views.index),
+
     path('hello-world/', views.hello_world),
     path('students/', views.students),
+    path('create/', views.create_student), # Ctrl + D
 ]

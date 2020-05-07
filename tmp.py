@@ -1,18 +1,15 @@
 
+# MVC
 
-class Student:
-    def __init__(self, fn, ln, age):
-        self.fn = fn
-        self.ln = ln
-        self.age = age
+# M - Model
+# V - View
+# C - Controller
 
+# MTV
 
-'''
-fn | ln | age
-a  | b  | 28
-'''
+# URLS -> VIEW -> MODEL -> Form -> Template -> User
 
-st = Student('a', 'b', 28)
-
-print(st.age)
-print(st.fn)
+# M - Model
+# T - template (html)
+# U - urls
+# V - view (controller)

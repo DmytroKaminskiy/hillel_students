@@ -1,9 +1,14 @@
 import random
 import string
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 
 from students.models import Student
+
+def generate_student(request):
+    Student.objects.create(age=...)
+    return HttpResponse()
 
 
 def generate_password(length: int = 10) -> str:
@@ -69,3 +74,54 @@ def students(request):
         response += student.info() + '<br/>'
 
     return HttpResponse(response)
+
+
+def index(request):
+    return render(request, 'index.html')
+
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def create_student(request):
+    from students.forms import StudentCreateForm
+
+    '''
+    GET
+    
+    HEAD
+    /create/?first_name=Name&last_name=LNAme
+    BODY
+    ..........
+
+    POST
+    HEAD
+    /create/
+    BODY
+    first_name=Name&last_name=LNAme
+
+    URLS ( /create/ ) -> view (def create_student)
+    
+    CRUD - 
+    C - create POST
+    R - read GET
+    U - update PUT, PATCH
+    D - delete DELETE
+
+    OPTIONS - all available methods
+    '''
+
+    if request.method == 'POST':
+        form = StudentCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
+    elif request.method == 'GET':
+        form = StudentCreateForm()
+
+    context = {'create_form': form}
+
+    return render(request, 'create.html', context=context)
