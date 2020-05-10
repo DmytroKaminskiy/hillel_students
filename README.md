@@ -1,6 +1,5 @@
-1. использовать bulk_create в команде generate_teachers Teacher.objects.bulk_create(teachers)
-2. Создать форму добавления Teacher
-3. Создать форму добавления Group
-4. Theory
-
-https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+1. Использовать везде reverse OR {% url %}. В каждом app должен быть свой модуль urls.py
+2. На форме редактирования студента добавить кнопку которая удаляет студента. После редирект на список.
+3. Полный роутинг для teachers. Список, редактирование, delete.
+4. Вывести teachers и groups в django admin
+5. 

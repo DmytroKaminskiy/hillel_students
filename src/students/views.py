@@ -1,10 +1,14 @@
 import random
 import string
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from students.models import Student
+from students.forms import StudentCreateForm
+
 
 def generate_student(request):
     Student.objects.create(age=...)
@@ -30,9 +34,6 @@ def hello_world(request):  # from flask import request
 
 
 def students(request):
-    '''
-    age=53&first_name=Paul&last_name=Schwartz
-    '''
 
     # parse parameters
     params = [
@@ -43,9 +44,6 @@ def students(request):
         'last_name',
         'id',
     ]
-    # age = request.GET.get('age')
-    # first_name = request.GET.get('first_name')
-    # last_name = request.GET.get('last_name')
 
     students_queryset = Student.objects.all()  # SELECT * FROM students_student;
 
@@ -53,27 +51,8 @@ def students(request):
         value = request.GET.get(param)
         if value:
             students_queryset = students_queryset.filter(**{param: value})  # age=29, last_name=Dima
-            # param == 'age__gt'
-            # value == 30
-            # .filter(age__gt=30)
 
-    # filter
-    # if age:
-    #     students_queryset = students_queryset.filter(age=age)
-    #
-    # if first_name:
-    #     students_queryset = students_queryset.filter(first_name=first_name)
-    #
-    # if last_name:
-    #     students_queryset = students_queryset.filter(last_name=last_name)
-
-    # arbeiten!
-    response = f'students: {students_queryset.count()}<br/>'
-
-    for student in students_queryset:
-        response += student.info() + '<br/>'
-
-    return HttpResponse(response)
+    return render(request, 'students-list.html', context={'students': students_queryset})
 
 
 def index(request):
@@ -81,12 +60,8 @@ def index(request):
 
 
 
-from django.views.decorators.csrf import csrf_exempt
-
 @csrf_exempt
 def create_student(request):
-    from students.forms import StudentCreateForm
-
     '''
     GET
     
@@ -117,7 +92,7 @@ def create_student(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('students:list'))
 
     elif request.method == 'GET':
         form = StudentCreateForm()
@@ -125,3 +100,31 @@ def create_student(request):
     context = {'create_form': form}
 
     return render(request, 'create.html', context=context)
+
+
+@csrf_exempt
+def edit_student(request, pk):
+    # ? id
+    # student_id = request.GET.get('student_id')
+    # print('STUDENT ID:', pk)
+    # from django.http import HttpResponse, HttpResponseRedirect, Http404
+
+    # try:
+    #     student = Student.objects.get(id=pk)
+    # except Student.DoesNotExist:
+    #     raise Http404
+    student = get_object_or_404(Student, id=pk)
+
+    if request.method == 'POST':
+        form = StudentCreateForm(request.POST, instance=student)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('students:list'))
+
+    elif request.method == 'GET':
+        form = StudentCreateForm(instance=student)
+
+    context = {'form': form}
+
+    return render(request, 'edit.html', context=context)

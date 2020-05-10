@@ -6,7 +6,12 @@
 </head>
 <body>
 
-<a href="{% url 'students:list' %}">students list</a>
+EDIT STUDENT
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>
