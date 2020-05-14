@@ -59,7 +59,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-
 @csrf_exempt
 def create_student(request):
     '''
@@ -118,13 +117,19 @@ def edit_student(request, pk):
     if request.method == 'POST':
         form = StudentCreateForm(request.POST, instance=student)
 
-        if form.is_valid():
-            form.save()
+        if form.is_valid():  # form.clean()
+            form.save()  #
             return HttpResponseRedirect(reverse('students:list'))
 
     elif request.method == 'GET':
         form = StudentCreateForm(instance=student)
 
-    context = {'form': form}
+    context = {'form': form, 'instance': student}
 
     return render(request, 'edit.html', context=context)
+
+
+def delete_student(request, pk):
+    print(pk)
+    print('delete_student')
+    return HttpResponse(f'ID: {pk}')

@@ -13,7 +13,9 @@
 
 {% for student in students %}
     <a href="{% url 'students:edit' pk=student.id %}">{{ student.id }}</a>
-    {{ student.full_name }}<br>
+    {{ student.full_name }}
+    <a href="{% url 'students:delete' pk=student.id %}">DELETE</a>
+    <br>
 {% endfor %}
 
 </body>

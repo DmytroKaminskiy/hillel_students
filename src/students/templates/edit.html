@@ -7,6 +7,9 @@
 <body>
 
 EDIT STUDENT
+{{ instance.id }}
+{{ instance.full_name }}
+
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
