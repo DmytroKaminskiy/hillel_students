@@ -1,15 +1,20 @@
+# int float bool NoneType, str, tuple, frozenset
+# list, dict, set
 
-# MVC
 
-# M - Model
-# V - View
-# C - Controller
 
-# MTV
+s = 'efsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfr' \
+    'gdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdr' \
+    'gdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgd' \
+    'rgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfr' \
+    'gdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefs' \
+    'frgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdef' \
+    'sfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgde' \
+    'fsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrg' \
+    'defsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdr' \
+    'gdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgd' \
+    'rgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdr' \
+    'gdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgd' \
+    'rgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgdefsfrgdrgdrgd'
 
-# URLS -> VIEW -> MODEL -> Form -> Template -> User
-
-# M - Model
-# T - template (html)
-# U - urls
-# V - view (controller)
+print(s)

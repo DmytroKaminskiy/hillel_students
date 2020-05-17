@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from students.models import Student
 from students.forms import StudentCreateForm
+from students.tasks import slow_func, print_student
 
 
 def generate_student(request):
@@ -133,3 +134,18 @@ def delete_student(request, pk):
     print(pk)
     print('delete_student')
     return HttpResponse(f'ID: {pk}')
+
+
+def slow(request):
+    from random import randint
+    n = randint(1, 10)
+
+    # slow_func.delay(n)  # 1
+    # slow_func.apply_async(args=[n], countdown=10)  # 2
+    slow_func.apply_async(kwargs={'num': n}, countdown=10)  # 2
+
+    student = Student.objects.first()
+    # int, float, str, list, dict, bool
+    print_student.apply_async(args=[student.id], countdown=20)
+
+    return HttpResponse('SLOW')
