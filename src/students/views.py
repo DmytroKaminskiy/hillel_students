@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from students.models import Student
+from students.models import Student, Group
 from students.forms import StudentCreateForm
 from students.tasks import slow_func, print_student
 
@@ -149,3 +149,9 @@ def slow(request):
     print_student.apply_async(args=[student.id], countdown=20)
 
     return HttpResponse('SLOW')
+
+
+def groups(request):
+    objects = Group.objects.all().select_related('head')
+    return render(request, 'groups.html',
+                  context={'objects_list': objects})

@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/<int:pk>/', views.edit_student, name='edit'),  # /studets/edit/25/
     path('delete/<int:pk>/', views.delete_student, name='delete'),
     path('slow/', views.slow, name='slow'),
+    path('groups/', views.groups, name='groups'),
 ]

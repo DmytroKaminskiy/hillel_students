@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% for group in objects_list %}
+    {{ group.id }} {{ group.name }} {{ group.head.first_name }}
+    <br>
+{% endfor %}
+
+</body>
+</html>

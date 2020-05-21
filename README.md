@@ -8,3 +8,6 @@ https://crontab.guru/
        Письмо должно уходить через celery task
 
 (1) 4. Theory
+
+testtestapp454545@gmail.com
+qwerty123456qwerty

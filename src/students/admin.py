@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from students.models import Student
+from students.models import Student, Group
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -19,4 +19,13 @@ class StudentAdmin(admin.ModelAdmin):
         return queryset
 
 
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'head']
+    list_select_related = ['head']
+
+    # def get_queryset(self, request):
+    #     return super().get_queryset(request).select_related('head')
+
+
 admin.site.register(Student, StudentAdmin)
+admin.site.register(Group, GroupAdmin)

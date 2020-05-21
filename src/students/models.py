@@ -26,3 +26,16 @@ class Student(models.Model):
         # self.phone = ''.join(i for i in self.phone if i.isdigit())
         super().save(**kwargs)
         print('After save')
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=64)
+    # head = models.OneToOneField(Student, on_delete=models.SET_NULL, null=True)
+    head = models.ForeignKey('students.Student',  # head_id
+                             on_delete=models.SET_NULL,
+                             null=True, related_name='groups')
+
+# OneToOne
+# OneToMany
+# ManyToMany
+
