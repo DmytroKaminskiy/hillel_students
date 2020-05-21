@@ -1,13 +1,10 @@
-https://crontab.guru/
 
-(2) 1. сэт ап rabbitmq + celery + celerybeat
-    https://simpleisbetterthancomplex.com/tutorial/2017/08/20/how-to-use-celery-with-django.html
-(2) 2. Удалять все логи (модель Logger) "старше" 7 дней, с периодикой раз в день. (created)
-(5) 3. Создать форму ContactUS(forms.Form) (title, message, email_from).
-       На save формы необходимо отправить письмо на dmytro.kaminskyi92@gmail.com
-       Письмо должно уходить через celery task
+1) https://docs.djangoproject.com/en/3.0/topics/db/examples/many_to_one/
+2) OneToOne, OneToMany, ManyToMany
+3) Join
 
-(1) 4. Theory
-
-testtestapp454545@gmail.com
-qwerty123456qwerty
+1) Добавить в модель Group внешние ключи на куратора (Teacher) и старосту (Student).
+   Вывести соответствующую информацию в таблицах (html). (/group/list/)
+   Вывести соответствующую информацию в админке.
+   select_related
+   Обновить скрипт по генерации случайных данных.
